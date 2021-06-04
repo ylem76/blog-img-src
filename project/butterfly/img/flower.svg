@@ -1,0 +1,47 @@
+
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 400">
+    <style>
+    .branch {
+        transform-origin:15% 95%;
+        animation: wind 5s infinite;
+
+    }
+
+    .flower {
+        transform-origin:left bottom;
+        animation: wind 5s infinite 0.3s;
+    }
+
+    @keyframes wind {
+
+        0%,
+        100% {
+            transform:rotate(0deg);
+        }
+
+        50% {
+            transform:rotate(5deg);
+        }
+    }
+    </style>
+    <g class="leaf-b">
+        <path fill-rule="evenodd" fill="#5E954F" d="M67.79 345.75s-4.61 5.44-34-33.06c-29.4-38.5-29.1-133.4-15.77-148.33 13.34-14.92 16.5-14.29 14.98 16.15-1.52 30.43 25.38 54.6 37.88 64.88 12.5 10.28 26.73 45.5 26.73 45.5s50.18 61.83-29.82 54.86z"/>
+  <path stroke="#3E6633" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M34.41 221.5s16.98 76.03 48.23 104.34"/>
+  <path stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M67.84 346.74s-34.7-18.81-49.33-72.22C3.88 221.12 3.82 174.27 33.1 148.45c0 0-4.76 34 6.47 58.72 11.23 24.7 40.98 36.66 53.56 75.97"/>
+
+    </g>
+    <g class="leaf-f">
+        <path fill-rule="evenodd" fill="#5E954F" d="M126.13 331.72c30.82-19.93 61.4-79.99 66.72-100.89 5.32-20.9 7.66-64.08-2.02-58.04 0 0-24.46 57.56-57.4 82.04-32.94 24.49-31.6 35.47-31.6 35.47s-20.1 70.12 24.3 41.42z"/>
+  <path stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M196.83 172.9s11.96 43.88-28.88 110.52C127.11 350.06 105 339.36 105 339.36M190.86 170.8s-25.2 61.76-51.36 80.13c-26.16 18.38-49.64 46.74-41.33 78.31"/>
+    </g>
+    <g class="branch">
+        <path stroke="#3E6633" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M98.85 117.15S31.15 229.36 80.9 338.43"/>
+    </g>
+    <g class="flower">
+        <path fill-rule="evenodd" stroke="#000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="#FDF189" d="M190.74 69.74s-33.5 104.82-101.69 54.98c0 0-39.04-24.6-8.17-74.03 30.86-49.42 57.94-49.14 64.08-29.3 0 0 32.55-11.41 33.85 26.86 0 0 9.49-1.72 12.56 7.27"/>
+  <path stroke="#E1A739" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M169.1 47.65s-58.68-3.69-74.23 67.93M146.88 30.77s6.7 4.46 5.65 17.85"/>
+    </g>
+
+    
+</svg>

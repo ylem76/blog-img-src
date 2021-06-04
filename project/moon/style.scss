@@ -1,0 +1,431 @@
+@font-face {
+    font-family: 'RixYeoljeongdo_Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#wrap {
+    background-color: #ddd;
+    padding: 60px;
+    height: 886px;
+
+    h1 {
+        font-size: 2vmin;
+        margin-bottom: 30px
+    }
+}
+
+#screen {
+    width: 96vmin;
+    height: 96vmin;
+    max-width: 720px;
+    max-height: 0;
+    position: relative;
+    background: rgb(187, 180, 218);
+    background: linear-gradient(-30deg, rgba(187, 180, 218, 1) 30%, rgba(127, 128, 179, 1) 60%);
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: green;
+        position: absolute;
+        z-index: 999;
+        transform-origin: bottom;
+        transform: scaleY(0);
+    }
+
+    &.mask::after {
+        animation: mask-scale 1s;
+    }
+    @keyframes mask-scale {
+        0% {transform: scaleY(0);}
+        50% {transform: scaleY(1);}
+        100% {transform: scaleY(0);}
+    }
+
+    // star
+    .star {
+        --tsize: 30;
+        --sColor: #fff8d5;
+
+        position: absolute;
+        width: 110px;
+        height: 110px;
+
+        top: 50px;
+        right: 50%;
+        transform: rotate(45deg);
+
+
+        &:nth-of-type(1) {
+            top: -30px;
+            right: 540px;
+        }
+
+        &:nth-of-type(2) {
+            top: 0px;
+            right: -5px;
+        }
+
+        &:nth-of-type(3) {
+            top: 540px;
+            right: 440px;
+        }
+
+        &:nth-of-type(4) {
+            top: 440px;
+            right: -30px;
+        }
+
+
+
+        @mixin star-light {
+            height: 8px;
+            background: var(--sColor);
+            border-radius: 10px;
+            box-sizing: border-box;
+            position: absolute;
+        }
+
+        .twinkle {
+            @include star-light;
+            width: 0;
+            top: 90px;
+            right: 89px;
+            transform: scale(0) rotate(0);
+            transform-origin: center;
+
+
+            &::before,
+            &::after {
+                @include star-light;
+                content: '';
+                display: block;
+                width: 0;
+                top: 0;
+                left: 0;
+
+            }
+
+            &::before {
+                transform: rotate(60deg);
+            }
+
+            &::after {
+                transform: rotate(120deg);
+            }
+        }
+
+        .tail {
+            @include star-light;
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: visible;
+            transform-origin: top center;
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            left: 2px;
+            opacity: 0;
+        }
+
+
+
+    }
+
+    &.on {
+        max-height:720px;
+        transition:max-height 0.3s;
+        .star {
+            @for $i from 1 through 4 {
+                &:nth-of-type(#{$i}) {
+                    transition: top 0.3s #{$i/8}s,
+                    opacity 0.3s #{$i/8}s;
+
+                    .tail {
+                        animation-delay:#{($i/8)+0.3}s;
+                    }
+
+                    .twinkle {
+                        transition: width 0.3s #{($i/8)+0.1}s ease-in,
+                        transform 0.5s #{($i/8)+1.2}s ease-in;
+                    }
+                }
+            }
+
+            &:nth-of-type(1) {
+                top: 0;
+            }
+
+            &:nth-of-type(2) {
+                top: 40px;
+            }
+
+            &:nth-of-type(3) {
+                top: 560px;
+            }
+
+            &:nth-of-type(4) {
+                top: 480px;
+            }
+
+            .twinkle {
+                width: 30px;
+                transform: scale(1) rotate(270deg);
+
+                &::before,
+                &::after {
+                    width: 30px;
+                    transition: width 0.3s 0.5s;
+                }
+            }
+
+
+
+            .tail {
+                opacity: 1;
+                transition: opacity 0.3s;
+                animation: star-tail 1s forwards;
+            }
+
+            @keyframes star-tail {
+                0% {
+                    height: 8px;
+                }
+
+                25% {
+                    height: 8px;
+                }
+
+                75% {
+                    height: 100px;
+                }
+
+                85% {
+                    height: 100px;
+                    margin-top: 0;
+
+                }
+
+                90% {
+                    margin-top: 92px;
+                    height: 8px;
+                }
+
+                100% {
+                    margin-top: 92px;
+                }
+
+            }
+
+        }
+    }
+
+    .moon {
+        width: 395.5px;
+        height: 395.5px;
+        position: absolute;
+        top: calc(50% - 200px);
+        left: calc(50% - 200px);
+        z-index: 1;
+        opacity: 0;
+
+        svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-30deg);
+            transform-origin: center;
+            fill-opacity: 0;
+
+            .circle {
+                stroke-width: 5px;
+                stroke-dasharray: 0, 2200;
+                animation: dash 2s 0.5s ease-out forwards;
+            }
+
+
+        }
+
+        .title {
+            font-family: 'RixYeoljeongdo_Regular';
+            font-size: 26px;
+            text-align: center;
+            position: absolute;
+            width: 200%;
+            top: 170px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            .word {
+                .char {
+                    display: inline-block;
+                    transform: translateY(1em);
+                    color: rgb(87, 26, 255);
+                    opacity: 0;
+                    transform: translate(0, -0.5em);
+
+                    &:nth-child(even) {
+                        transform: translateY(-1em);
+                    }
+
+                    &:before,
+                    &:after {
+                        content: attr(data-char);
+                        position: absolute;
+                        left: 0;
+                        opacity: 0;
+                    }
+
+                    &:before {
+                        color: rgb(255, 56, 116);
+                    }
+
+                    &:after {
+                        color: rgb(255, 255, 255)
+                    }
+                }
+            }
+        }
+
+        p {
+            text-align: center;
+            position: absolute;
+            width: 200%;
+            top: 240px;
+            left: 50%;
+            opacity: 0;
+            transform: translate(-50%, 50px);
+        }
+    }
+
+    &.on .moon {
+        opacity: 1;
+        transition: opacity 0.3s 0.3s;
+
+
+        svg {
+            fill-opacity: 1;
+            transition: fill-opacity 1s 1.5s;
+
+            .circle {
+                animation: dash 1s 0.5s ease-out forwards;
+
+            }
+
+            @keyframes dash {
+                to {
+                    stroke-dasharray: 1190, 2200;
+                }
+            }
+        }
+
+        .title {
+            .char {
+                animation: pop-in 0.4s cubic-bezier(0.76, -0.02, 0.25, 1.43) 1 forwards;
+
+                &:before {
+                    transform: translate(0, 0.5em);
+                    animation: pop-in 0.4s -0.4s cubic-bezier(0.76, -0.02, 0.25, 1.43) 1 forwards;
+                }
+
+                &:after {
+                    transform: translate(0, 1em);
+                    animation: pop-in 0.4s -0.4s cubic-bezier(0.76, -0.02, 0.25, 1.43) 1 forwards;
+                }
+
+
+                @for $i from 1 through 10 {
+                    &:nth-of-type(#{$i}) {
+                        animation-delay:#{($i/12) + 1.25}s;
+
+                        &:before {
+                            animation-delay:#{($i/12)+1.35}s;
+                        }
+
+                        &:after {
+                            animation-delay:#{($i/12)+1.45}s;
+                        }
+                    }
+                }
+            }
+
+            @keyframes pop-in {
+                to {
+                    opacity: 1;
+                    transform: translate(0, 0px);
+                }
+            }
+
+            @keyframes pop-in-shadow {
+                to {
+                    transform: translate(-4px, -4px);
+                    opacity: 1;
+                }
+            }
+
+            @keyframes pop-in-shadow-1 {
+                to {
+                    transform: translate(-2px, -2px);
+                    opacity: 1;
+                }
+            }
+        }
+
+        p {
+            opacity: 1;
+            transform: translate(-50%, 0);
+            transition: transform 0.4s 2.2s, opacity 0.5s 2s;
+        }
+    }
+
+    .clouds {
+        .cloud {
+            position: absolute;
+            z-index: 2;
+        }
+
+        @mixin cloud-positon($top, $left) {
+            top: $top;
+            left: $left;
+        }
+
+        .cloud:nth-child(1) {
+            @include cloud-positon(200px, 0);
+            // transform:translateX(-100%);
+        }
+
+        .cloud:nth-child(2) {
+            @include cloud-positon(300px, 325px);
+            // transform:translateX(100%);
+        }
+
+        .cloud:nth-child(3) {
+            @include cloud-positon(400px, 180px);
+            // transform:translateX(210%);
+        }
+    }
+
+    &.on .clouds {
+        .cloud--left {
+            left: -220px;
+            transition: left 8s cubic-bezier(0, 0, 0, 1);
+        }
+
+        .cloud--right {
+            left: 525px;
+            transition: left 7s cubic-bezier(0, 0, 0, 1);
+        }
+
+        .cloud--center {
+            left: 440px;
+            transition: left 9s cubic-bezier(0, 0, 0, 1);
+        }
+    }
+
+
+}

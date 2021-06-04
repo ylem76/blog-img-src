@@ -1,0 +1,334 @@
+@font-face {
+  font-family: 'RixYeoljeongdo_Regular';
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+#wrap {
+  background-color: #ddd;
+  padding: 60px;
+  height: 886px; }
+  #wrap h1 {
+    font-size: 2vmin;
+    margin-bottom: 30px; }
+
+#screen {
+  width: 96vmin;
+  height: 96vmin;
+  max-width: 720px;
+  max-height: 0;
+  position: relative;
+  background: #bbb4da;
+  background: linear-gradient(-30deg, #bbb4da 30%, #7f80b3 60%);
+  overflow: hidden; }
+  #screen::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: green;
+    position: absolute;
+    z-index: 999;
+    transform-origin: bottom;
+    transform: scaleY(0); }
+  #screen.mask::after {
+    animation: mask-scale 1s; }
+@keyframes mask-scale {
+  0% {
+    transform: scaleY(0); }
+  50% {
+    transform: scaleY(1); }
+  100% {
+    transform: scaleY(0); } }
+  #screen .star {
+    --tsize: 30;
+    --sColor: #fff8d5;
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: 50px;
+    right: 50%;
+    transform: rotate(45deg); }
+    #screen .star:nth-of-type(1) {
+      top: -30px;
+      right: 540px; }
+    #screen .star:nth-of-type(2) {
+      top: 0px;
+      right: -5px; }
+    #screen .star:nth-of-type(3) {
+      top: 540px;
+      right: 440px; }
+    #screen .star:nth-of-type(4) {
+      top: 440px;
+      right: -30px; }
+    #screen .star .twinkle {
+      height: 8px;
+      background: var(--sColor);
+      border-radius: 10px;
+      box-sizing: border-box;
+      position: absolute;
+      width: 0;
+      top: 90px;
+      right: 89px;
+      transform: scale(0) rotate(0);
+      transform-origin: center; }
+      #screen .star .twinkle::before, #screen .star .twinkle::after {
+        height: 8px;
+        background: var(--sColor);
+        border-radius: 10px;
+        box-sizing: border-box;
+        position: absolute;
+        content: '';
+        display: block;
+        width: 0;
+        top: 0;
+        left: 0; }
+      #screen .star .twinkle::before {
+        transform: rotate(60deg); }
+      #screen .star .twinkle::after {
+        transform: rotate(120deg); }
+    #screen .star .tail {
+      height: 8px;
+      background: var(--sColor);
+      border-radius: 10px;
+      box-sizing: border-box;
+      position: absolute;
+      position: absolute;
+      top: 0;
+      right: 0;
+      overflow: visible;
+      transform-origin: top center;
+      width: 8px;
+      height: 8px;
+      position: absolute;
+      left: 2px;
+      opacity: 0; }
+  #screen.on {
+    max-height: 720px;
+    transition: max-height 0.3s; }
+    #screen.on .star:nth-of-type(1) {
+      transition: top 0.3s 0.125s, opacity 0.3s 0.125s; }
+      #screen.on .star:nth-of-type(1) .tail {
+        animation-delay: 0.425s; }
+      #screen.on .star:nth-of-type(1) .twinkle {
+        transition: width 0.3s 0.225s ease-in, transform 0.5s 1.325s ease-in; }
+    #screen.on .star:nth-of-type(2) {
+      transition: top 0.3s 0.25s, opacity 0.3s 0.25s; }
+      #screen.on .star:nth-of-type(2) .tail {
+        animation-delay: 0.55s; }
+      #screen.on .star:nth-of-type(2) .twinkle {
+        transition: width 0.3s 0.35s ease-in, transform 0.5s 1.45s ease-in; }
+    #screen.on .star:nth-of-type(3) {
+      transition: top 0.3s 0.375s, opacity 0.3s 0.375s; }
+      #screen.on .star:nth-of-type(3) .tail {
+        animation-delay: 0.675s; }
+      #screen.on .star:nth-of-type(3) .twinkle {
+        transition: width 0.3s 0.475s ease-in, transform 0.5s 1.575s ease-in; }
+    #screen.on .star:nth-of-type(4) {
+      transition: top 0.3s 0.5s, opacity 0.3s 0.5s; }
+      #screen.on .star:nth-of-type(4) .tail {
+        animation-delay: 0.8s; }
+      #screen.on .star:nth-of-type(4) .twinkle {
+        transition: width 0.3s 0.6s ease-in, transform 0.5s 1.7s ease-in; }
+    #screen.on .star:nth-of-type(1) {
+      top: 0; }
+    #screen.on .star:nth-of-type(2) {
+      top: 40px; }
+    #screen.on .star:nth-of-type(3) {
+      top: 560px; }
+    #screen.on .star:nth-of-type(4) {
+      top: 480px; }
+    #screen.on .star .twinkle {
+      width: 30px;
+      transform: scale(1) rotate(270deg); }
+      #screen.on .star .twinkle::before, #screen.on .star .twinkle::after {
+        width: 30px;
+        transition: width 0.3s 0.5s; }
+    #screen.on .star .tail {
+      opacity: 1;
+      transition: opacity 0.3s;
+      animation: star-tail 1s forwards; }
+@keyframes star-tail {
+  0% {
+    height: 8px; }
+  25% {
+    height: 8px; }
+  75% {
+    height: 100px; }
+  85% {
+    height: 100px;
+    margin-top: 0; }
+  90% {
+    margin-top: 92px;
+    height: 8px; }
+  100% {
+    margin-top: 92px; } }
+  #screen .moon {
+    width: 395.5px;
+    height: 395.5px;
+    position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 200px);
+    z-index: 1;
+    opacity: 0; }
+    #screen .moon svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-30deg);
+      transform-origin: center;
+      fill-opacity: 0; }
+      #screen .moon svg .circle {
+        stroke-width: 5px;
+        stroke-dasharray: 0, 2200;
+        animation: dash 2s 0.5s ease-out forwards; }
+    #screen .moon .title {
+      font-family: 'RixYeoljeongdo_Regular';
+      font-size: 26px;
+      text-align: center;
+      position: absolute;
+      width: 200%;
+      top: 170px;
+      left: 50%;
+      transform: translateX(-50%); }
+      #screen .moon .title .word .char {
+        display: inline-block;
+        transform: translateY(1em);
+        color: #571aff;
+        opacity: 0;
+        transform: translate(0, -0.5em); }
+        #screen .moon .title .word .char:nth-child(even) {
+          transform: translateY(-1em); }
+        #screen .moon .title .word .char:before, #screen .moon .title .word .char:after {
+          content: attr(data-char);
+          position: absolute;
+          left: 0;
+          opacity: 0; }
+        #screen .moon .title .word .char:before {
+          color: #ff3874; }
+        #screen .moon .title .word .char:after {
+          color: white; }
+    #screen .moon p {
+      text-align: center;
+      position: absolute;
+      width: 200%;
+      top: 240px;
+      left: 50%;
+      opacity: 0;
+      transform: translate(-50%, 50px); }
+  #screen.on .moon {
+    opacity: 1;
+    transition: opacity 0.3s 0.3s; }
+    #screen.on .moon svg {
+      fill-opacity: 1;
+      transition: fill-opacity 1s 1.5s; }
+      #screen.on .moon svg .circle {
+        animation: dash 1s 0.5s ease-out forwards; }
+@keyframes dash {
+  to {
+    stroke-dasharray: 1190, 2200; } }
+    #screen.on .moon .title .char {
+      animation: pop-in 0.4s cubic-bezier(0.76, -0.02, 0.25, 1.43) 1 forwards; }
+      #screen.on .moon .title .char:before {
+        transform: translate(0, 0.5em);
+        animation: pop-in 0.4s -0.4s cubic-bezier(0.76, -0.02, 0.25, 1.43) 1 forwards; }
+      #screen.on .moon .title .char:after {
+        transform: translate(0, 1em);
+        animation: pop-in 0.4s -0.4s cubic-bezier(0.76, -0.02, 0.25, 1.43) 1 forwards; }
+      #screen.on .moon .title .char:nth-of-type(1) {
+        animation-delay: 1.3333333333s; }
+        #screen.on .moon .title .char:nth-of-type(1):before {
+          animation-delay: 1.4333333333s; }
+        #screen.on .moon .title .char:nth-of-type(1):after {
+          animation-delay: 1.5333333333s; }
+      #screen.on .moon .title .char:nth-of-type(2) {
+        animation-delay: 1.4166666667s; }
+        #screen.on .moon .title .char:nth-of-type(2):before {
+          animation-delay: 1.5166666667s; }
+        #screen.on .moon .title .char:nth-of-type(2):after {
+          animation-delay: 1.6166666667s; }
+      #screen.on .moon .title .char:nth-of-type(3) {
+        animation-delay: 1.5s; }
+        #screen.on .moon .title .char:nth-of-type(3):before {
+          animation-delay: 1.6s; }
+        #screen.on .moon .title .char:nth-of-type(3):after {
+          animation-delay: 1.7s; }
+      #screen.on .moon .title .char:nth-of-type(4) {
+        animation-delay: 1.5833333333s; }
+        #screen.on .moon .title .char:nth-of-type(4):before {
+          animation-delay: 1.6833333333s; }
+        #screen.on .moon .title .char:nth-of-type(4):after {
+          animation-delay: 1.7833333333s; }
+      #screen.on .moon .title .char:nth-of-type(5) {
+        animation-delay: 1.6666666667s; }
+        #screen.on .moon .title .char:nth-of-type(5):before {
+          animation-delay: 1.7666666667s; }
+        #screen.on .moon .title .char:nth-of-type(5):after {
+          animation-delay: 1.8666666667s; }
+      #screen.on .moon .title .char:nth-of-type(6) {
+        animation-delay: 1.75s; }
+        #screen.on .moon .title .char:nth-of-type(6):before {
+          animation-delay: 1.85s; }
+        #screen.on .moon .title .char:nth-of-type(6):after {
+          animation-delay: 1.95s; }
+      #screen.on .moon .title .char:nth-of-type(7) {
+        animation-delay: 1.8333333333s; }
+        #screen.on .moon .title .char:nth-of-type(7):before {
+          animation-delay: 1.9333333333s; }
+        #screen.on .moon .title .char:nth-of-type(7):after {
+          animation-delay: 2.0333333333s; }
+      #screen.on .moon .title .char:nth-of-type(8) {
+        animation-delay: 1.9166666667s; }
+        #screen.on .moon .title .char:nth-of-type(8):before {
+          animation-delay: 2.0166666667s; }
+        #screen.on .moon .title .char:nth-of-type(8):after {
+          animation-delay: 2.1166666667s; }
+      #screen.on .moon .title .char:nth-of-type(9) {
+        animation-delay: 2s; }
+        #screen.on .moon .title .char:nth-of-type(9):before {
+          animation-delay: 2.1s; }
+        #screen.on .moon .title .char:nth-of-type(9):after {
+          animation-delay: 2.2s; }
+      #screen.on .moon .title .char:nth-of-type(10) {
+        animation-delay: 2.0833333333s; }
+        #screen.on .moon .title .char:nth-of-type(10):before {
+          animation-delay: 2.1833333333s; }
+        #screen.on .moon .title .char:nth-of-type(10):after {
+          animation-delay: 2.2833333333s; }
+@keyframes pop-in {
+  to {
+    opacity: 1;
+    transform: translate(0, 0px); } }
+@keyframes pop-in-shadow {
+  to {
+    transform: translate(-4px, -4px);
+    opacity: 1; } }
+@keyframes pop-in-shadow-1 {
+  to {
+    transform: translate(-2px, -2px);
+    opacity: 1; } }
+    #screen.on .moon p {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      transition: transform 0.4s 2.2s, opacity 0.5s 2s; }
+  #screen .clouds .cloud {
+    position: absolute;
+    z-index: 2; }
+  #screen .clouds .cloud:nth-child(1) {
+    top: 200px;
+    left: 0; }
+  #screen .clouds .cloud:nth-child(2) {
+    top: 300px;
+    left: 325px; }
+  #screen .clouds .cloud:nth-child(3) {
+    top: 400px;
+    left: 180px; }
+  #screen.on .clouds .cloud--left {
+    left: -220px;
+    transition: left 8s cubic-bezier(0, 0, 0, 1); }
+  #screen.on .clouds .cloud--right {
+    left: 525px;
+    transition: left 7s cubic-bezier(0, 0, 0, 1); }
+  #screen.on .clouds .cloud--center {
+    left: 440px;
+    transition: left 9s cubic-bezier(0, 0, 0, 1); }
+
+/*# sourceMappingURL=01_moon.css.map */

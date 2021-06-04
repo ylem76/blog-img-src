@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaintJS</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <canvas id="jsCanvas" class="canvas">
+    </canvas>
+    <div class="controls">
+        <div class="controls__range">
+            <input type="range" id="jsRange" min="0.1" max="5.1" value="2.5" steps="0.5">
+        </div>
+        <div class="controls__btns">
+            <button id="jsMode">Fill</button>
+            <button id="jsSave">Save</button>
+        </div>
+        <div class="controls__colors" id="jsColors">
+            <div class="constrols__color" style="background-color:#111;"></div>
+            <div class="constrols__color" style="background-color:red;"></div>
+            <div class="constrols__color" style="background-color:orange;"></div>
+            <div class="constrols__color" style="background-color:yellow;"></div>
+            <div class="constrols__color" style="background-color:green;"></div>
+            <div class="constrols__color" style="background-color:blue;"></div>
+            <div class="constrols__color" style="background-color:navy;"></div>
+            <div class="constrols__color" style="background-color:purple;"></div>
+            
+        </div>
+
+    </div>
+</body>
+
+</html>
