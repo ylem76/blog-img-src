@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+/* ************ reset ************ */
+html, body, div, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp, small, var, i, dl, dt, dd, ol, ul, li, fieldset, form, legend, table, caption, tbody, tfoot, thead, tr, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, audio, video {margin: 0;padding: 0;border: 0;font-size: 14px;vertical-align: baseline;background: transparent;list-style: none;box-sizing: border-box;}
+iframe {display:block;}
+span, em, mark, strong, b, label {margin: 0; padding: 0; border: 0; vertical-align: baseline; background: transparent; list-style: none; box-sizing: border-box;}
+html, body {width: 100%;height: 100%;}
+body {margin:0; padding:0; line-height: 1;-webkit-text-size-adjust: none;color: #000;overflow-x: hidden;}
+body.member {background: #fff;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+fieldset, img, abbr, acronym {border: 0;}
+ol, ul {list-style: none;}
+table {table-layout: fixed; border-collapse: collapse; border-spacing: 0; border: 0;}
+legend, caption {font-size: 0; overflow: hidden; text-indent: -9999999px; height: 0; width: 0; line-height: 0;}
+td, th {word-break: break-all; margin: 0; padding: 0; font-size: 14px; box-sizing: border-box;}
+ins {text-decoration: none;}
+del {text-decoration: line-through;}
+sub, sup {margin: 0; padding: 0;}
+textarea {padding: 1%; width: 100%; border: 1px solid #ccc; color: #4d4d4d; resize: none; box-sizing: border-box; -webkit-appearance: none; -moz-appearance: none; appearance: none; border-radius: 0;}
+em {font-style: normal;}
+a, a:link, a:visited, a:active {text-decoration: none;}
+a:hover {text-decoration: none;}
+.hidden {display: block; width: 0px; height: 0px; position: absolute; left: -9999px; top: -9999px; font-size: 0px; line-height: 0; text-indent: -9999px;}
+.ir {position:absolute; left:-9999px; width:0; height:0; font-size:0; opacity:0; overflow:hidden;}
+
+
+/**/
+
+.wrap {width:100%; height:100%; position:relative; background-image:url('../img/bg_pattern.png');}
+nav {width:360px; height:640px; background-image:url('../img/btn_bg.png'); background-size:cover; position:relative; margin:0 auto;}
+ul {position:absolute; top:312px; left:62px;}
+nav li a {width:235px; display:block; font-size:0; margin-bottom:12px;}
+nav li a img {width:100%;}
