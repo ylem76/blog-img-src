@@ -1,0 +1,82 @@
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>songsong.studio</title>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>posters</h1>
+    <a href="https://codepen.io/cobra_winfrey/pen/PoqVQRq?editors=0110" target="_blank">원본 링크</a>
+    
+    <section id="wrap">
+        <div class='poster'>
+            <h2 data-splitting="chars" class="words chars splitting" style="--word-total:1; --char-total:10;">
+                <span class="word" data-word="television" style="--word-index:0;">
+                    <span class="char" data-char="t" style="--char-index:0;">t</span>
+                    <span class="char" data-char="e" style="--char-index:1;">e</span>
+                    <span class="char" data-char="l" style="--char-index:2;">l</span>
+                    <span class="char" data-char="e" style="--char-index:3;">e</span>
+                    <span class="char" data-char="v" style="--char-index:4;">v</span>
+                    <span class="char" data-char="i" style="--char-index:5;">i</span>
+                    <span class="char" data-char="s" style="--char-index:6;">s</span>
+                    <span class="char" data-char="i" style="--char-index:7;">i</span>
+                    <span class="char" data-char="o" style="--char-index:8;">o</span>
+                    <span class="char" data-char="n" style="--char-index:9;">n</span>
+                </span>
+            </h2>
+            <div class='heading'>
+                <p>4 weekends<br>with guest bands</p>
+                <p>january 12, 17, 18, 24, 25<br>plus sunday february 2 1975</p>
+                <p>at cbgb's<br>315 bowery, new york city</p>
+            </div>
+            <div class='bars'>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+            </div>
+            <div class='bars'>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+                <div class='bar'></div>
+            </div>
+        </div>
+    </section>
+    <button id="restart">
+        애니메이션 시작
+        </button>
+    <footer>
+        <p>songsong.studio all rights reserved</p>
+    </footer>
+    <!-- <script src="js/js.js"></script> -->
+    <script>
+        // Splitting();
+        window.addEventListener("load", function () {
+            document.body.classList.add("animate");
+        });
+
+        var btn = document.querySelector('#restart');
+
+        btn.addEventListener("click", function (evt) {
+            document.body.classList.add("mask");
+            setTimeout(() => {
+                document.body.classList.add("stopAnim");
+            }, 1000);
+            setTimeout(() => {
+                document.body.classList.remove("stopAnim");
+                document.body.classList.remove("mask");
+            }, 2000);
+        });
+    </script>
+</body>
+
+
+</html>

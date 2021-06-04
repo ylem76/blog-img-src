@@ -1,0 +1,480 @@
+/* 링크 a 태그 */
+.nav {
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    z-index: 999;
+    text-align: center;
+    left: calc(50% - 50px);
+    top: 20vh
+}
+
+
+/* poster */
+html {
+    font-size: 1.5vmin;
+
+    @media (max-width:768px) {
+        font-size: 2vmin;
+    }
+
+    // vmin : 뷰포트 가로 혹은 세로 최소값 기준
+}
+
+/* 변수 선언 */
+$t: transparent; // 투명(자주 사용해서 미리 변수로 빼 둔 것 같음
+$b: #000111; // 블랙 기본 색상값 지정
+$bgsphere: radial-gradient(circle at center, #358D41 72%, $t 72%); //3번포스터 같음
+
+$elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275); // ease
+$expo: cubic-bezier(1, 0, 0, 1); // ? ease 옵션 같음
+$inout: ease-in-out; // ease
+
+body {
+    display: grid;
+    place-items: center; // grid와 flexbox에서 쓰이는 옵션 align-items와 justify-items를 한번에 적음 cf.justify-content와 다르므로 주의
+    height: 100vh;
+    width: 100vw;
+    background: radial-gradient(circle at center, #222, #000);
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    cursor: pointer;
+    pointer-events: auto;
+    /*
+        pointer-event 
+        그래픽 요소가 어떤 상황에서 포인터 이벤트의 대상이 될 수 있는지 지정함
+        svg요소에 많은 옵션이 있음.
+        여기서는 cursor와 비슷한 느낌으로 쓴 것 같음
+        
+        ㅋㅋㅋㅋㅋㅋ none으로 처리하면 아예 무시함ㅋㅋㅋㅋㅋ 시발ㅋㅋㅋㅋㅋ
+        
+    */
+    // animation: reanimate 8s linear 1 forwards;
+
+    @media (max-width:768px) {
+        // 미디어 쿼리 지정 부트스트랩처럼 768을 모바일로 지정
+        padding: 5rem 0;
+    }
+
+    &:before {
+        // 부모참조 연산자 &
+
+        content: 'click anywhere to restart animation';
+        position: absolute;
+        bottom: 0.5rem;
+        color: #777;
+        font-size: 0.9rem;
+        left: 50%;
+        transition: 0.3s ease-in-out;
+        transform: translate(-50%, 2rem);
+    }
+
+    * {
+        position: relative; //Hi David 아마 위치 등등 잡으려고 넣었을 것 
+        animation-play-state: paused !important; // animation-play-state 애니메이션 재생 및 일시정지 제어 기본은 멈춰있는 상태로 지정한듯
+
+        &:before,
+        &:after {
+            animation-play-state: paused !important;
+        }
+    }
+
+}
+
+// body end
+
+body {
+    &.animate {
+        // 애니메이션 시작했을때 다 여기다 묶어놓으면 보기 어렵지 않나? 하여튼
+        // body에 animate 클래스 붙었을 때 애니메이션 시작
+
+        &:before {
+            // content: 'click anywhere to restart animation'; 이 부분
+            // 9초 동안 2rem 아래로 내려갔다가 9초 뒤에 다시 올라옴
+            transition-delay: 9s;
+            transform: translate(-50%, 0rem);
+        }
+
+        * {
+            // 상단에서 막아둔 애니메이션 important로 재생
+            animation-play-state: running !important;
+
+            &:before,
+            &:after {
+                animation-play-state: running !important;
+            }
+        }
+
+        #wrap {
+            .poster {
+                // css로 클리핑 마스크 만들기 IE 지원X
+                clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%);
+
+                &:after {
+                    // after 마스킹 이미지 화면을 가리는 역할
+                    transform: scaleY(0);
+                }
+            }
+        }
+
+        &.mask,
+        &.stopAnim {
+            // body.animate가 붙었을 때 mask와 stopAnim 클래스를 붙여서 제어하나봄
+            pointer-events: none;
+
+            &:before {
+                // body 안내 텍스트
+                transform: translate(-50%, 2rem);
+                transition-delay: 0s;
+            }
+        }
+
+        &.mask {
+
+            // body에 mask클래스가 붙었을 때 poster::after 스케일 애니메이션
+            #wrap {
+                .poster {
+                    &:after {
+                        // after는 화면을 가리는 역할 scale(1)이면 poster 내부 오브젝트가 보이지 않음
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+
+        &.stopAnim {
+            #wrap {
+                .poster {
+                    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+                }
+            }
+
+            * {
+                animation: none !important;
+
+                &:before,
+                &:after {
+                    animation: none !important;
+                }
+            }
+        }
+    }//.animate end
+}
+body {
+    #wrap {
+        // body에 .animate없을 때 (기본) 스타일
+        // 포스터 이미지들 정렬
+        width: 46rem;
+        height: 61rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 2rem;
+        grid-row-gap: 2rem;
+        transform: translateY(-0.5rem);
+
+        @media (max-width:768px) {
+            // 정렬 미디어쿼리
+            height: 122rem;
+            width: 23rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(4, 1fr);
+            grid-column-gap: 0;
+            margin-bottom: 5rem;
+        }
+
+        .poster {
+            box-shadow: 0 2rem 2rem -1.5rem #000;
+            background: #efefef; //내용 별로 컬러 값이 들어가서 별 상관은 없음
+            overflow: hidden;
+            position: relative;
+            transition: 0.4s ease-in-out;
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+
+            &:after {
+                // 가리는 거~ 기본 이렇게 셋팅해놓고 height값을 transform을 이용해서 조절
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: inherit;
+                z-index: 999;
+                left: 0;
+                top: 0;
+                transform-origin: top;
+                transition: 0.4s ease-in-out;
+            }
+
+            &:nth-of-type(even) {
+                // 포스터 2번 4번 transform 기준점 상단으로
+                transform-origin: top;
+            }
+
+            @for $i from 1 through 4 {
+
+                // i변수를 활용해서 각각 딜레이 1/16 차이로
+                &:nth-of-type(#{$i}) {
+                    transition-delay:#{$i/16}s;
+
+                    &:after {
+                        // i변수를 활용해서 각각 딜레이 1/8 차이로
+                        transition-delay:#{$i/8}s;
+                    }
+                }
+            }
+
+            &:first-of-type {
+                //1번 포스터
+                // Television
+                // 지역변수 선언
+                --bg: #DBE2D4;
+                --orange: #F37021;
+                --blue: #017CB0;
+                --pink: #CD0276;
+                --timing: 0.6s;
+                --timing2: 0.4s;
+                background: var(--bg);
+
+                h2 {
+                    position: absolute;
+                    top: 5.75rem;
+                    left: 0.5rem;
+                    font-size: 3rem;
+                    margin: 0;
+                    padding: 0rem 0;
+                    color: $t;
+                    overflow: hidden;
+
+                    span {
+                        span.char {
+                            position: relative;
+                            display: inline-block;
+                            transform: translateY(5rem);
+                            animation: popIn var(--timing2) $elastic 1 forwards;
+                            color: var(--pink);
+
+                            @for $i from 1 through 10 {
+
+                                // television 각 글자 마다 딜레이 순차적으로 주기
+                                &:nth-of-type(#{$i}) {
+                                    animation-delay:#{($i/12) + 1.25}s;
+                                    // 메인글자(핑크)은 i/12 + 1.25s 딜레이
+
+                                    &:before,
+                                    &:after {
+                                        animation-delay:#{($i/12) + 1.55}s;
+                                        // 비포(블루)와 애프터(오렌지) 글자는 i/12 + 1.55s 딜레이
+                                    }
+                                }
+                            }
+
+                            &:nth-of-type(even) {
+                                // 변수 필요 없으니까 for문 바깥쪽으로 이동
+                                transform: translateY(-5rem);
+                                // 홀수번째 있는 글자는 아래서 위로 올라오는 효과
+                                // 짝수번째 글자는 위에서 아래로 내려오는 효과를 위해 translate를 홀짝 다르게 줌
+                            }
+
+                            &:before,
+                            &:after {
+                                content: attr(data-char); // content 상위요소에서 data-char로 attr로 지정해둔 대로 자동으로 작성
+                                color: var(--blue); // scss 변수 사용
+                                position: absolute;
+                                transform: translateY(5rem); // 텍스트 아래로 이동
+                                animation: popIn var(--timing2) $elastic 1 forwards;
+                                transform-origin: top;
+                                left: 0;
+                                mix-blend-mode: multiply; // 레이어 블렌딩 모드 IE안됨 참고
+                                opacity: 0;
+
+                                @keyframes popIn {
+
+                                    // 애니메이션은 해당 요소 바로 아래 작성
+                                    from {
+                                        opacity: 1;
+                                    }
+
+                                    to {
+                                        opacity: 1;
+                                        transform: translateY(0);
+                                    }
+                                }
+                            }
+
+                            &:after {
+                                color: var(--orange);
+                                transform: translateY(-5rem);
+                                // 가장 마지막에 나타나는 after 글자는 무조건 아래서 위로 올라오기 때문에
+                                // transform 위치를 이렇게 변경
+                            }
+                        }
+                    }
+                }
+
+                // h2 end
+
+
+                .heading {
+                    position: absolute;
+                    width: 100%;
+                    top: 0.5rem;
+                    left: 0.5rem;
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    grid-template-rows: 1fr;
+                    grid-column-gap: 0.2rem;
+                    font-weight: 800;
+
+                    p {
+                        font-size: 0.4rem;
+                        grid-area: 1 / 2 / 2 / 4;
+                        padding-left: 0.5rem;
+                        display: inline-block;
+                        transform: translateY(-5rem);
+                        animation: scaleY var(--timing) $expo 1 forwards;
+
+                        @for $i from 1 through 3 {
+                            &:nth-of-type(#{$i}) {
+                                animation-delay:#{$i/4 + 2}s;
+                            }
+                        }
+
+                        &:first-of-type {
+                            // first-child 부모에 관계 없이
+                            grid-area: 1 / 1 / 2 / 2;
+                            padding-left: 0;
+                            transform: translateX(-5rem);
+                        }
+
+                        &:last-of-type {
+                            // last-child 부모에 관계 없이
+                            grid-area: 1 / 5 / 2 / 7;
+                            padding-left: 0.75rem;
+                            transform: translateX(7.5rem);
+                        }
+                    }
+                }
+
+                // heading end
+
+                .bars {
+                    // bar 묶음(블루)
+                    position: absolute;
+                    display: grid;
+                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-rows: 1fr;
+                    grid-column-gap: 1.8rem;
+                    grid-row-gap: 0px;
+                    width: calc(100% - 2.15rem);
+                    height: 21rem;
+
+                    .bar {
+                        animation: scaleY var(--timing) $inout 1 forwards;
+                    }
+
+                    &:nth-of-type(2) {
+                        // bar 묶음(파랑) poster의 2번째 child(=.bars)
+                        // .heading도 하나로 치더라 왜인지는 모르겠음.
+                        bottom: -3rem;
+                        left: 0;
+
+                        @keyframes scaleY {
+                            to {
+                                transform: scaleY(1);
+                            }
+                        }
+
+                        .bar {
+                            background: var(--blue);
+                            transform-origin: top;
+                            transform: scaleY(0);
+
+                            &:nth-of-type(even) {
+                                transform-origin: bottom;
+                            }
+
+                            @for $i from 1 through 5 {
+                                &:nth-of-type(#{$i}) {
+                                    animation-delay:#{$i/8}s;
+                                }
+                            }
+                        }
+                    }
+
+                    &:last-of-type {
+                        // bars 마지막(주황, 핑크)
+                        right: 0;
+                        top: 9rem;
+                        mix-blend-mode: multiply;
+                        height: 8.25rem;
+
+                        .bar {
+                            background: var(--orange);
+                            transform: scaleY(0);
+                            transform-origin: bottom;
+
+                            &:nth-of-type(even) {
+                                transform-origin: top;
+
+                                &:before {
+                                    transform-origin: top;
+                                }
+
+                                &:after {
+                                    transform-origin: bottom;
+                                }
+                            }
+
+                            @for $i from 1 through 5 {
+                                &:nth-of-type(#{$i}) {
+                                    animation-delay:#{($i/8) + 0.25}s;
+
+                                    &:before {
+                                        animation-delay:#{($i/8) + 0.75}s;
+                                    }
+
+                                    &:after {
+                                        animation-delay:#{($i/8) + 1}s;
+                                    }
+                                }
+                            }
+
+                            &:before,
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                width: 100%;
+                                height: 100%;
+                                background: var(--orange);
+                                left: 0;
+                                top: 18rem;
+                                transform-origin: bottom;
+                                animation: scaleY var(--timing) $inout 1 forwards;
+                                transform: scaleY(0);
+                            }
+
+                            &:after {
+                                top: 9rem;
+                                background: var(--pink);
+                                transform-origin: top;
+                            }
+                        }
+
+                    }
+
+
+
+                }
+
+                //bar end
+
+
+
+            }
+        }
+
+
+    }
+
+    // wrap end
+}

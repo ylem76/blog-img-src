@@ -1,0 +1,344 @@
+@charset "UTF-8";
+/* 링크 a 태그 */
+.nav {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  z-index: 999;
+  text-align: center;
+  left: calc(50% - 50px);
+  top: 20vh; }
+
+/* poster */
+html {
+  font-size: 1.5vmin; }
+  @media (max-width: 768px) {
+    html {
+      font-size: 2vmin; } }
+
+/* 변수 선언 */
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at center, #222, #000);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  cursor: pointer;
+  pointer-events: auto;
+  /*
+      pointer-event 
+      그래픽 요소가 어떤 상황에서 포인터 이벤트의 대상이 될 수 있는지 지정함
+      svg요소에 많은 옵션이 있음.
+      여기서는 cursor와 비슷한 느낌으로 쓴 것 같음
+      
+      ㅋㅋㅋㅋㅋㅋ none으로 처리하면 아예 무시함ㅋㅋㅋㅋㅋ 시발ㅋㅋㅋㅋㅋ
+      
+  */ }
+  @media (max-width: 768px) {
+    body {
+      padding: 5rem 0; } }
+  body:before {
+    content: 'click anywhere to restart animation';
+    position: absolute;
+    bottom: 0.5rem;
+    color: #777;
+    font-size: 0.9rem;
+    left: 50%;
+    transition: 0.3s ease-in-out;
+    transform: translate(-50%, 2rem); }
+  body * {
+    position: relative;
+    animation-play-state: paused !important; }
+    body *:before, body *:after {
+      animation-play-state: paused !important; }
+
+body.animate:before {
+  transition-delay: 9s;
+  transform: translate(-50%, 0rem); }
+body.animate * {
+  animation-play-state: running !important; }
+  body.animate *:before, body.animate *:after {
+    animation-play-state: running !important; }
+body.animate #wrap .poster {
+  clip-path: polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%); }
+  body.animate #wrap .poster:after {
+    transform: scaleY(0); }
+body.animate.mask, body.animate.stopAnim {
+  pointer-events: none; }
+  body.animate.mask:before, body.animate.stopAnim:before {
+    transform: translate(-50%, 2rem);
+    transition-delay: 0s; }
+body.animate.mask #wrap .poster:after {
+  transform: scale(1); }
+body.animate.stopAnim #wrap .poster {
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); }
+body.animate.stopAnim * {
+  animation: none !important; }
+  body.animate.stopAnim *:before, body.animate.stopAnim *:after {
+    animation: none !important; }
+
+body #wrap {
+  width: 46rem;
+  height: 61rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  transform: translateY(-0.5rem); }
+  @media (max-width: 768px) {
+    body #wrap {
+      height: 122rem;
+      width: 23rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      grid-column-gap: 0;
+      margin-bottom: 5rem; } }
+  body #wrap .poster {
+    box-shadow: 0 2rem 2rem -1.5rem #000;
+    background: #efefef;
+    overflow: hidden;
+    position: relative;
+    transition: 0.4s ease-in-out;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); }
+    body #wrap .poster:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      transform-origin: top;
+      transition: 0.4s ease-in-out; }
+    body #wrap .poster:nth-of-type(even) {
+      transform-origin: top; }
+    body #wrap .poster:nth-of-type(1) {
+      transition-delay: 0.0625s; }
+      body #wrap .poster:nth-of-type(1):after {
+        transition-delay: 0.125s; }
+    body #wrap .poster:nth-of-type(2) {
+      transition-delay: 0.125s; }
+      body #wrap .poster:nth-of-type(2):after {
+        transition-delay: 0.25s; }
+    body #wrap .poster:nth-of-type(3) {
+      transition-delay: 0.1875s; }
+      body #wrap .poster:nth-of-type(3):after {
+        transition-delay: 0.375s; }
+    body #wrap .poster:nth-of-type(4) {
+      transition-delay: 0.25s; }
+      body #wrap .poster:nth-of-type(4):after {
+        transition-delay: 0.5s; }
+    body #wrap .poster:first-of-type {
+      --bg: #DBE2D4;
+      --orange: #F37021;
+      --blue: #017CB0;
+      --pink: #CD0276;
+      --timing: 0.6s;
+      --timing2: 0.4s;
+      background: var(--bg); }
+      body #wrap .poster:first-of-type h2 {
+        position: absolute;
+        top: 5.75rem;
+        left: 0.5rem;
+        font-size: 3rem;
+        margin: 0;
+        padding: 0rem 0;
+        color: transparent;
+        overflow: hidden; }
+        body #wrap .poster:first-of-type h2 span span.char {
+          position: relative;
+          display: inline-block;
+          transform: translateY(5rem);
+          animation: popIn var(--timing2) cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 forwards;
+          color: var(--pink); }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(1) {
+            animation-delay: 1.3333333333s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(1):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(1):after {
+              animation-delay: 1.6333333333s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(2) {
+            animation-delay: 1.4166666667s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(2):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(2):after {
+              animation-delay: 1.7166666667s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(3) {
+            animation-delay: 1.5s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(3):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(3):after {
+              animation-delay: 1.8s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(4) {
+            animation-delay: 1.5833333333s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(4):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(4):after {
+              animation-delay: 1.8833333333s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(5) {
+            animation-delay: 1.6666666667s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(5):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(5):after {
+              animation-delay: 1.9666666667s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(6) {
+            animation-delay: 1.75s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(6):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(6):after {
+              animation-delay: 2.05s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(7) {
+            animation-delay: 1.8333333333s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(7):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(7):after {
+              animation-delay: 2.1333333333s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(8) {
+            animation-delay: 1.9166666667s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(8):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(8):after {
+              animation-delay: 2.2166666667s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(9) {
+            animation-delay: 2s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(9):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(9):after {
+              animation-delay: 2.3s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(10) {
+            animation-delay: 2.0833333333s; }
+            body #wrap .poster:first-of-type h2 span span.char:nth-of-type(10):before, body #wrap .poster:first-of-type h2 span span.char:nth-of-type(10):after {
+              animation-delay: 2.3833333333s; }
+          body #wrap .poster:first-of-type h2 span span.char:nth-of-type(even) {
+            transform: translateY(-5rem); }
+          body #wrap .poster:first-of-type h2 span span.char:before, body #wrap .poster:first-of-type h2 span span.char:after {
+            content: attr(data-char);
+            color: var(--blue);
+            position: absolute;
+            transform: translateY(5rem);
+            animation: popIn var(--timing2) cubic-bezier(0.175, 0.885, 0.32, 1.275) 1 forwards;
+            transform-origin: top;
+            left: 0;
+            mix-blend-mode: multiply;
+            opacity: 0; }
+@keyframes popIn {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
+          body #wrap .poster:first-of-type h2 span span.char:after {
+            color: var(--orange);
+            transform: translateY(-5rem); }
+      body #wrap .poster:first-of-type .heading {
+        position: absolute;
+        width: 100%;
+        top: 0.5rem;
+        left: 0.5rem;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0.2rem;
+        font-weight: 800; }
+        body #wrap .poster:first-of-type .heading p {
+          font-size: 0.4rem;
+          grid-area: 1 / 2 / 2 / 4;
+          padding-left: 0.5rem;
+          display: inline-block;
+          transform: translateY(-5rem);
+          animation: scaleY var(--timing) cubic-bezier(1, 0, 0, 1) 1 forwards; }
+          body #wrap .poster:first-of-type .heading p:nth-of-type(1) {
+            animation-delay: 2.25s; }
+          body #wrap .poster:first-of-type .heading p:nth-of-type(2) {
+            animation-delay: 2.5s; }
+          body #wrap .poster:first-of-type .heading p:nth-of-type(3) {
+            animation-delay: 2.75s; }
+          body #wrap .poster:first-of-type .heading p:first-of-type {
+            grid-area: 1 / 1 / 2 / 2;
+            padding-left: 0;
+            transform: translateX(-5rem); }
+          body #wrap .poster:first-of-type .heading p:last-of-type {
+            grid-area: 1 / 5 / 2 / 7;
+            padding-left: 0.75rem;
+            transform: translateX(7.5rem); }
+      body #wrap .poster:first-of-type .bars {
+        position: absolute;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 1.8rem;
+        grid-row-gap: 0px;
+        width: calc(100% - 2.15rem);
+        height: 21rem; }
+        body #wrap .poster:first-of-type .bars .bar {
+          animation: scaleY var(--timing) ease-in-out 1 forwards; }
+        body #wrap .poster:first-of-type .bars:nth-of-type(2) {
+          bottom: -3rem;
+          left: 0; }
+@keyframes scaleY {
+  to {
+    transform: scaleY(1); } }
+          body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar {
+            background: var(--blue);
+            transform-origin: top;
+            transform: scaleY(0); }
+            body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar:nth-of-type(even) {
+              transform-origin: bottom; }
+            body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar:nth-of-type(1) {
+              animation-delay: 0.125s; }
+            body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar:nth-of-type(2) {
+              animation-delay: 0.25s; }
+            body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar:nth-of-type(3) {
+              animation-delay: 0.375s; }
+            body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar:nth-of-type(4) {
+              animation-delay: 0.5s; }
+            body #wrap .poster:first-of-type .bars:nth-of-type(2) .bar:nth-of-type(5) {
+              animation-delay: 0.625s; }
+        body #wrap .poster:first-of-type .bars:last-of-type {
+          right: 0;
+          top: 9rem;
+          mix-blend-mode: multiply;
+          height: 8.25rem; }
+          body #wrap .poster:first-of-type .bars:last-of-type .bar {
+            background: var(--orange);
+            transform: scaleY(0);
+            transform-origin: bottom; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(even) {
+              transform-origin: top; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(even):before {
+                transform-origin: top; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(even):after {
+                transform-origin: bottom; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(1) {
+              animation-delay: 0.375s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(1):before {
+                animation-delay: 0.875s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(1):after {
+                animation-delay: 1.125s; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(2) {
+              animation-delay: 0.5s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(2):before {
+                animation-delay: 1s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(2):after {
+                animation-delay: 1.25s; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(3) {
+              animation-delay: 0.625s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(3):before {
+                animation-delay: 1.125s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(3):after {
+                animation-delay: 1.375s; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(4) {
+              animation-delay: 0.75s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(4):before {
+                animation-delay: 1.25s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(4):after {
+                animation-delay: 1.5s; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(5) {
+              animation-delay: 0.875s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(5):before {
+                animation-delay: 1.375s; }
+              body #wrap .poster:first-of-type .bars:last-of-type .bar:nth-of-type(5):after {
+                animation-delay: 1.625s; }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:before, body #wrap .poster:first-of-type .bars:last-of-type .bar:after {
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background: var(--orange);
+              left: 0;
+              top: 18rem;
+              transform-origin: bottom;
+              animation: scaleY var(--timing) ease-in-out 1 forwards;
+              transform: scaleY(0); }
+            body #wrap .poster:first-of-type .bars:last-of-type .bar:after {
+              top: 9rem;
+              background: var(--pink);
+              transform-origin: top; }
+
+/*# sourceMappingURL=scss.css.map */
