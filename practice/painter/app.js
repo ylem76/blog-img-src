@@ -1,22 +1,26 @@
 const canvas = document.getElementById('jsCanvas');
 const ctx = canvas.getContext('2d');
 
+const signature = document.getElementById('jsSignature');
+const ctx2 = signature.getContext('2d');
+
 // context : 캔버스 내부에서 픽셀들을 다룸
 const colors = document.getElementsByClassName('jsColor');
 const range = document.getElementById('jsRange');
 const mode = document.getElementById('jsMode');
 const saveBtn = document.getElementById('jsSave');
+const mirror = document.getElementById('jsMirror');
 
 // 기본 색상 및 기본 크기 정의
 const INITIAL_COLOR = '#222';
 const CANVAS_SIZE = 700;
 
-// ss와는 별개로 캔버스 사이즈를 지정해야함
+// css와는 별개로 캔버스 사이즈를 지정해야함
 canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
 // 캔버스 기본 색상 지정
-ctx.fillStyle = 'white';
+ctx.fillStyle = 'transparent';
 ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
 // 컨텍스트 기본 스타일 지정
@@ -98,7 +102,7 @@ function handleCanvasClick() {
 
 function handleCM(event) {
     // 마우스 오른쪽 클릭 해서 열리는 걸 보통 contextmenu라고 부름
-    event.preventDefault();
+    // event.preventDefault();
 }
 
 function hadleSaveClick() {
@@ -107,11 +111,36 @@ function hadleSaveClick() {
     // download에는 파일 이름을 적는다
     // 확장자는 toDataURL('image/jpeg') 등으로 변경 가능(기본은 png)
     const link = document.createElement('a');
-    link.href= canvas.toDataURL();
+    link.href = canvas.toDataURL();
     link.download = 'paintJS[exported]';
 
     // .click()은 기본이벤트인듯..? 알아보기
     link.click();
+}
+
+function handleMirror() {
+    // const img = document.querySelector('.base-img');
+    // img.src = canvas.toDataURL();
+
+    // ctx.scale(-1, 1);
+
+
+
+    // img.src = canvas.toDataURL();
+
+    // ctx2.drawImage(img, 100, 100);
+
+
+
+    const imageObj = document.querySelector('.base-img');
+    imageObj.onload = function() {
+        
+        ctx2.drawImage(imageObj, 69, 50);
+        ctx2.scale(0.5,0.5);
+        // ctx2.drawImage(imageObj, 69, 50);
+    }
+
+    imageObj.src = canvas.toDataURL();
 }
 
 if (canvas) {
@@ -144,4 +173,8 @@ if (mode) {
 
 if (saveBtn) {
     saveBtn.addEventListener('click', hadleSaveClick);
+}
+
+if (mirror) {
+    mirror.addEventListener('click', handleMirror);
 }

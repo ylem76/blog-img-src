@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <canvas id="jsSignature" class="canvas" width="700" height="700">
+    </canvas>
+    <img class="base-img" src="" alt="" style="transform:scaleX(-1);">
     <canvas id="jsCanvas" class="canvas">
     </canvas>
     <div class="controls">
@@ -22,6 +25,7 @@
         <div class="controls__btns">
             <button id="jsMode">Fill</button>
             <button id="jsSave">Save</button>
+            <button id="jsMirror">mirror</button>
         </div>
         <div class="controls__colors" id="jsColors">
             <div class="constrols__color jsColor" style="background-color:#111;"></div>
@@ -34,7 +38,6 @@
             <div class="constrols__color jsColor" style="background-color:purple;"></div>
             
         </div>
-
     </div>
 </body>
 
