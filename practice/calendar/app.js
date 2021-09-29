@@ -1,55 +1,47 @@
 $(document).ready(function() {
     calendarInit();
 });
+/*
+  달력 렌더링 할 때 필요한 정보 목록 
+
+  현재 월(현재 시간으로 고정)
+  1일 요일
+  마지막일(숫자)
+  전월 마지막일(숫자)
+*/ 
+
 function calendarInit() {
     var today = new Date(); // 현재 시간 가져오기
-    var firstDate = new Date(today.getFullYear(),today.getMonth(),1); // 현재 월의 1일 date 객체 생성
-    var lastDate = new Date(today.getFullYear(),today.getMonth()+1,0); // 현재 월의 마지막일 date 객체 생성, 28, 30, 31 등 무시하고 다음달의 첫 날의 -1일
-
     var monthData = {
-        today : {
-            year : today.getFullYear(),
-            month: today.getMonth(), // month 0부터 시작
-            date : today.getDate(),
-            day : today.getDay() // 일요일부터 0부터 시작
-        },
-        firstDate : {
-            year : firstDate.getFullYear(),
-            month: firstDate.getMonth(),
-            date : firstDate.getDate(),
-            day : firstDate.getDay()
-        },
-        lastDate : {
-            year : lastDate.getFullYear(),
-            month: lastDate.getMonth(),
-            date : lastDate.getDate(),
-            day : lastDate.getDay()
-        }
     }
-
-    var thisDates = [];
-
-    console.log(today)
-    today = new Date(today.getFullYear(), today.getMonth() + 1, today.getDate());
-
-    for (var i = 1; i <= monthData.lastDate.date; i++) {
-        thisDates.push(i);
+    getCurrentMonth();
+    function getCurrentMonth() {
+      monthData = {
+        firstDay : today.getDay()-1, // 월요일부터 시작이라 -1 처리
+        lastDate : new Date(today.getFullYear(),today.getMonth()+1,0).getDate(),
+        prevDate : new Date(today.getFullYear(),today.getMonth(),0).getDate(),
+        nextDate : 7
+      }
+      monthData.nextDate = 7 - (monthData.firstDay + monthData.lastDate % 7)      
     }
-
-    console.log(thisDates)
-
-    calendar = document.querySelector('.dates')
-
-    for(var i =0; i<monthData.firstDate.day; i++) {
-        calendar.innerHTML = calendar.innerHTML + '<div class="day"></div>'
-    }
-    for(var i=1; i<=monthData.lastDate.date; i++) {
-        calendar.innerHTML = calendar.innerHTML + '<div class="day">' + i + '</div>'
-    }
-
     
-
-    // calendarBack();
+    renderCalender();
+    
+    function renderCalender() {
+      calendar = document.querySelector('.dates')
+      // 지난달
+      for (var i = monthData.prevDate; i > monthData.prevDate - monthData.firstDay; i--) {
+        calendar.innerHTML = calendar.innerHTML + '<div class="day">' + i + '</div>'
+      }
+      // 이번달
+      for (var i = 1; i <= monthData.lastDate; i++) {
+        calendar.innerHTML = calendar.innerHTML + '<div class="day">' + i + '</div>'
+      }
+      // 다음달
+      for (var i = 1; i <= monthData.nextDate; i++) {
+        calendar.innerHTML = calendar.innerHTML + '<div class="day">' + i + '</div>'
+      }
+    }
 }
 
 
