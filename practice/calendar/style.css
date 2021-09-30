@@ -33,15 +33,15 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin: 12px 0 0 0;
+    font-size:14px;
 }
 
 .sec_cal .cal_nav .go-prev {
-    background-image: url('/static/img/common/ico_arrow_prev_bk.png');
+    
     margin-right: 64px;
 }
 
 .sec_cal .cal_nav .go-next {
-    background-image: url('/static/img/common/ico_arrow_next_bk.png');
     margin-left: 64px;
 }
 
@@ -93,6 +93,9 @@
 }
 .sec_cal .cal_wrap .cal_area .day:nth-child(7n) {
     color: #ed2a61;
+}
+.sec_cal .cal_wrap .cal_area .day.disable {
+    color:#ddd;
 }
 
 .sec_cal .cal_wrap .cal_area .dates {
