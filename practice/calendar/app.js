@@ -26,8 +26,8 @@ function calendarInit() {
             
         }
         // 첫날 요일 구하기 : 월요일부터 시작이라 -1 처리
-        // 마지막 요일 구하기 : 마지막일 == 일요일일 때
         monthData.firstDay = currentMonth.getDay() - 1 == -1 ? 0 : currentMonth.getDay() - 1
+        // 마지막 요일 구하기 : 마지막일 == 일요일일 때
         monthData.lastDay = ((monthData.firstDay + monthData.lastDate) % 7) == 0 ? 0 : 7 - ((monthData.firstDay + monthData.lastDate) % 7)
 
         $('.year-month').text(currentMonth.getFullYear() +'.'+ (currentMonth.getMonth() + 1))
@@ -58,5 +58,4 @@ function calendarInit() {
         currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth()+1, 1);
         renderCalender();
     });
-
 }
